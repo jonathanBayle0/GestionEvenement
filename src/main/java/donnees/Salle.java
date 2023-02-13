@@ -27,6 +27,20 @@ public class Salle {
     @Column(name = "sal_association")
     private String association;
 
+    public Salle(Short id, String nom, String adresse, Integer capacite, String nomGestionnaire, String prenomGestionnaire, String association) {
+        this.id=id;
+        this.nom=nom;
+        this.adresse=adresse;
+        this.capacite=capacite;
+        this.nomGestionnaire=nomGestionnaire;
+        this.prenomGestionnaire=prenomGestionnaire;
+        this.association=association;
+    }
+
+    public Salle() {
+        super();
+    }
+
     public Short getId() {
         return this.id;
     }

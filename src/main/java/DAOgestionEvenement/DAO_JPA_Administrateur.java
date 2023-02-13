@@ -1,35 +1,47 @@
 package DAOgestionEvenement;
+
+import donnees.Administrateur;
 import donnees.Salle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
-public class DAO_JPA_Salle extends DAO<Salle> {
+public class DAO_JPA_Administrateur extends DAO<Administrateur> {
+
+    /**
+     * Construit le DAO pour la classe param�tr�e.
+     *
+     * @throws DAOException en cas de probl�me
+     */
+    public DAO_JPA_Administrateur() throws DAOException {
+        super();
+    }
+
     @Override
-    public Salle find(int id) throws DAOException {
+    public Administrateur find(int id) throws DAOException {
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
             EntityManager em = emf.createEntityManager();
-            Salle salle = em.find(Salle.class, id);
-            return salle;
+            Administrateur admin = em.find(Administrateur.class, id);
+            return admin;
         }catch (Exception e) {
             throw new DAOException("Probleme technique (" + e.getMessage() + ")");
         }
     }
 
     @Override
-    public void create(Salle data) throws DAOException {
+    public void create(Administrateur data) throws DAOException {
         EntityTransaction trans = null;
         try {
-
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
             EntityManager em = emf.createEntityManager();
-		    trans = em.getTransaction();
+            trans = em.getTransaction();
             trans.begin();
-            Salle salle = new Salle(data.getId(),data.getNom(), data.getAdresse(),data.getCapacite(), data.getNomGestionnaire(), data.getPrenomGestionnaire(), data.getAssociation());
-            em.persist(salle);
+            Administrateur admin = new Administrateur(data.getPseudo(),data.getMotDePasse());
+            em.persist(admin);
             trans.commit();
 
         }catch (Exception e) {
@@ -39,7 +51,7 @@ public class DAO_JPA_Salle extends DAO<Salle> {
     }
 
     @Override
-    public void update(Salle data) throws DAOException {
+    public void update(Administrateur data) throws DAOException {
         EntityTransaction trans = null;
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
@@ -56,14 +68,14 @@ public class DAO_JPA_Salle extends DAO<Salle> {
     }
 
     @Override
-    public void delete(Salle data) throws DAOException {
+    public void delete(Administrateur data) throws DAOException {
         EntityTransaction trans = null;
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
             EntityManager em = emf.createEntityManager();
             trans = em.getTransaction();
             trans.begin();
-            //Traitement
+            //traitement
             em.remove(data);
             trans.commit();
 
@@ -72,9 +84,4 @@ public class DAO_JPA_Salle extends DAO<Salle> {
             throw new DAOException("Probleme technique (" + e.getMessage() + ")");
         }
     }
-
-    public DAO_JPA_Salle() throws DAOException{
-        super();
-    }
-
 }

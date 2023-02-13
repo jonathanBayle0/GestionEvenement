@@ -13,6 +13,15 @@ public class Administrateur {
     @Column(name = "adm_mot_de_passe")
     private String motDePasse; //null
 
+    public Administrateur(String pseudo, String motDePasse) {
+        this.pseudo=pseudo;
+        this.motDePasse=motDePasse;
+    }
+
+    public Administrateur() {
+        super();
+    }
+
     public String getPseudo() {
         return this.pseudo;
     }

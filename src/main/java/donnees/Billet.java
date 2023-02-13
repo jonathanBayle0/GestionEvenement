@@ -15,6 +15,16 @@ public class Billet {
     @Column(name = "soi_id")
     private Short soiId;
 
+    public Billet(Short id, Integer categorie, Short soiId) {
+        this.id=id;
+        this.categorie=categorie;
+        this.soiId=soiId;
+    }
+
+    public Billet() {
+        super();
+    }
+
     public Short getId() {
         return this.id;
     }

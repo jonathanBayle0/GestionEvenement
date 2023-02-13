@@ -1,6 +1,7 @@
 package donnees;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "t_soiree_soi")
@@ -23,6 +24,19 @@ public class Soiree {
 
     @Column(name = "soi_prix")
     private Double prix;
+
+    public Soiree(Short id, String nom, Timestamp dateDebut, Timestamp dateFin, Short salId, Double prix) {
+        this.id=id;
+        this.nom=nom;
+        this.dateDebut=dateDebut;
+        this.dateFin=dateFin;
+        this.salId=salId;
+        this.prix=prix;
+    }
+
+    public Soiree() {
+        super();
+    }
 
     public Short getId() {
         return this.id;

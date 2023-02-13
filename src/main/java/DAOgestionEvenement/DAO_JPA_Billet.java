@@ -1,35 +1,35 @@
 package DAOgestionEvenement;
-import donnees.Salle;
+
+import donnees.Billet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class DAO_JPA_Salle extends DAO<Salle> {
+public class DAO_JPA_Billet extends DAO<Billet>{
     @Override
-    public Salle find(int id) throws DAOException {
+    public Billet find(int id) throws DAOException {
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
             EntityManager em = emf.createEntityManager();
-            Salle salle = em.find(Salle.class, id);
-            return salle;
+            Billet billet = em.find(Billet.class, id);
+            return billet;
         }catch (Exception e) {
             throw new DAOException("Probleme technique (" + e.getMessage() + ")");
         }
     }
 
     @Override
-    public void create(Salle data) throws DAOException {
+    public void create(Billet data) throws DAOException {
         EntityTransaction trans = null;
         try {
-
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
             EntityManager em = emf.createEntityManager();
-		    trans = em.getTransaction();
+            trans = em.getTransaction();
             trans.begin();
-            Salle salle = new Salle(data.getId(),data.getNom(), data.getAdresse(),data.getCapacite(), data.getNomGestionnaire(), data.getPrenomGestionnaire(), data.getAssociation());
-            em.persist(salle);
+            Billet billet = new Billet(data.getId(),data.getCategorie(), data.getSoiId());
+            em.persist(billet);
             trans.commit();
 
         }catch (Exception e) {
@@ -39,7 +39,7 @@ public class DAO_JPA_Salle extends DAO<Salle> {
     }
 
     @Override
-    public void update(Salle data) throws DAOException {
+    public void update(Billet data) throws DAOException {
         EntityTransaction trans = null;
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
@@ -56,7 +56,7 @@ public class DAO_JPA_Salle extends DAO<Salle> {
     }
 
     @Override
-    public void delete(Salle data) throws DAOException {
+    public void delete(Billet data) throws DAOException {
         EntityTransaction trans = null;
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("EvenementPU");
@@ -73,8 +73,7 @@ public class DAO_JPA_Salle extends DAO<Salle> {
         }
     }
 
-    public DAO_JPA_Salle() throws DAOException{
+    public DAO_JPA_Billet() throws DAOException{
         super();
     }
-
 }
