@@ -12,14 +12,14 @@
         <class>donnees.Information</class>
         <class>donnees.Salle</class>
         <class>donnees.Soiree</class>
+        <class>donnees.Information</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="URL"/>
-            <property name="javax.persistence.jdbc.user" value="LOGIN"/>
-            <property name="javax.persistence.jdbc.password" value="MDP"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestionevenement"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.url" value="mongodb://localhost:27017/gestionevenement"/>
-            <property name="hibernate.connection.driver_class" value="com.dbschema.MongoJdbcDriver"/>
         </properties>
     </persistence-unit>
 </persistence>
